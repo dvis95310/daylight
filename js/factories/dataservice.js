@@ -1,13 +1,13 @@
 
 
- 
- 
-// variable à Régler pour le nombre de questions 
+
+
 // variable à Régler pour le nombre de questions
-var quizReglageNumber 
-// variable à Régler pour le nombre de questions 
-// variable à Régler pour le nombre de questions 
- 
+// variable à Régler pour le nombre de questions
+var quizReglageNumber
+// variable à Régler pour le nombre de questions
+// variable à Régler pour le nombre de questions
+
 var quizQuestions = [];
 var listShuffle
 
@@ -55,7 +55,7 @@ function trueForce(){
         }
 		listShuffleBrut = shuffle(list)
         listShuffle = listShuffleBrut.slice(0, maxQuest);
-		
+
 
             }
 
@@ -85,7 +85,7 @@ function trueForce(){
         }
 
         var list = new Array;
- 
+
 
         function getUrlVars() {
             var vars = {};
@@ -141,7 +141,7 @@ function trueForce(){
 				qNameFile=configArray.question_file_name+".json"
 				aNameFile=configArray.answers_file_name+".json"
 				maxQuestConfig=configArray.quiz_n_questionsMax
-				
+
 
     var maxQuest = quizReglageNumber;
 
@@ -156,28 +156,28 @@ function trueForce(){
         }
 		listShuffleBrut = shuffle(list)
         listShuffle = listShuffleBrut.slice(0, maxQuest);
-		
+
 
             }
 
 
 
         });
-		
-		
-		
+
+
+
 
 dopamine=function(){
 	     correctAnswers.length = quizReglageNumber;
                 for (i = 0; i < listShuffle.length; i++) {
                     correctAnswers[i] = bArray[listShuffle[i]]
                 }
-		
+
 }
-    
-      
+
+
 trueForce();
-       
+
 
 loadQuestion = function (){
 	 $.ajax({
@@ -223,9 +223,11 @@ loadQuestion = function (){
                             selected: null,
                             correct: null,
                             feedBack: qArray[listShuffle[i]].feedback,
+                            questionImgUrl :masterQuestIMGURL+"q"+parseInt(parseInt([listShuffle[i]])+1)+".png",
+                            questionImgContain :qArray[listShuffle[i]].questionImgContain,
+
                         }
                     );
-
                     quizQuestions[0].selected = true
 
 
@@ -249,7 +251,7 @@ loadQuestion = function (){
 
         });
 
-	
+
 }
 
     loadAnswers=function(){    $.ajax({
@@ -272,30 +274,30 @@ loadQuestion = function (){
                     }
 
 
-				
-				
+
+
                 );
 
 
-  
+
 				dopamine();
-							
+
 	for (var i = 0; i < listShuffle.length; i++) {
 													correctAnswers[i]=correctAnswersB[listShuffle[i]];
 													}
-				
-				
+
+
             }
 
 
         });
 	}
-	
-	
+
+
    loadQuestion();
 loadAnswers();
-       
-	   
+
+
         var turtlesData = [{
                 type: "GHPSJ",
                 image_url: "http://www.hpsj.fr/wp-content/uploads/2015/01/vue-nuit.jpg",

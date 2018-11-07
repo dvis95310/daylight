@@ -1,19 +1,19 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
       <!--SCORM-->
       <script src="js/lms/lms_api.js"></script>
       <script src="js/lms/init.js"></script>
                <script>
-			
+
 var configArray=[];
 var configArray2="dds";
 var qNameFile="question1v.json"
 var aNameFile="answers1v.json"
 			$(document).ready(function() {
    //code here
-	
+
 			$.ajax({
             url: 'json/config.json',
             type: 'GET',
@@ -29,30 +29,30 @@ var aNameFile="answers1v.json"
 				jQuery("#quizTitle").text(x.quiz_title)
 				jQuery("#quizSubtitle").text(x.quiz_title2)
 				var bendOjerry=jQuery(".bendO")
-				
+
 				for (i=0; i<x.SubLines.length; i++){
 				jQuery(bendOjerry[i]).append("<span class='blueRay'>"+x.SubLines[i]+"</br> </br> </span>");
-				
-				
+
+
 				}
-				
-		
-				
+
+
+
 				var alreadyDone=localStorage.getItem("ale")
-				
-				
-				initCourse();				
-if(alreadyDone==true || alreadyDone=='true')		 
-{if (window.confirm("Souhaitez vous recommencer?")) { 
+
+
+				initCourse();
+if(alreadyDone==true || alreadyDone=='true')
+{if (window.confirm("Souhaitez vous recommencer?")) {
    localStorage.clear();$("#body").show();
 }else{$("#body").show();}}
 				}
         });
-		
+
 });
 				<!-- } -->
        </script>
-   
+
 
 <html lang="en" ng-app="turtleFacts">
    <head>
@@ -68,11 +68,11 @@ if(alreadyDone==true || alreadyDone=='true')
       <link rel="stylesheet" type="text/css" href="css/base.css" />
       <link rel="stylesheet" type="text/css" href="css/buttons.css" />
       <link href="https://fonts.googleapis.com/css?family=Archivo" rel="stylesheet">
-   
+
       <!--SCORM-->
    </head>
    <style type="text/css">
-   
+
    #body{display:none}
 .overstyl {
     position: absolute;
@@ -86,7 +86,7 @@ if(alreadyDone==true || alreadyDone=='true')
 
    </style>
 
-   
+
    <body id="body" >
       <!-- <div class="container" ng-controller="JsCtrl as Js">  -->
       <div class="container" ng-controller="quizCtrl as quiz">
@@ -94,9 +94,9 @@ if(alreadyDone==true || alreadyDone=='true')
 
          </div>
          <div ng-controller="listCtrl as list" ng-hide="list.quizMetrics.quizActive || list.quizMetrics.resultsActive">
-            <!-- top search bar with start quiz button using bootstrap --> 
+            <!-- top search bar with start quiz button using bootstrap -->
             <form class="form-inline well well-sm clearfix" style="font-size: 17px;padding:20%">
-       
+
             <h2 id="quizTitle"></h2>
             <h2 id="quizSubtitle"></h2>
             <br id="pointBlue">
@@ -107,12 +107,12 @@ if(alreadyDone==true || alreadyDone=='true')
 			<span class='blueRay bendO'> </span>
 			<center>
             <button class="btn btn-warning blumental pull-right overstyl" ng-click="list.activateQuiz();list.playSongStart();fadeOutIn();quiz.reloadTime();" onclick="fadeOutInQuest();closePop();"> <strong >Commencer le Quiz</strong>
-			</button> 
+			</button>
 			</center>
 			 </br></br>
 			  </br></br>
-			</form> 
-			    
+			</form>
+
             </br>
          </div>
          <div id="show" ng-controller="quizCtrl as quiz" ng-show="quiz.quizMetrics.quizActive"  style="color: snow;">
@@ -121,14 +121,14 @@ if(alreadyDone==true || alreadyDone=='true')
                <div class="col-xs-4"><button class="button button--pipaluk " ng-click='quiz.setAnsweredQuestion()' >AFFICHER LES QUESTIONS NON RÉPONDUES</button> </div>
                <div class="col-xs-4"><button class="button button--pipaluk " ng-click='quiz.setAllQuestion()'>AFFICHER LA LISTE DES QUESTIONS</br></br></button> </div>
                <button ng-show='quiz.timer' class="button button--quidel button--inverted" id="pausa"><i class="button__icon icon icon-search"></i><span>METTRE LE QUIZ EN PAUSE</span></button>
-               <button ng-show='quiz.timer'  style="min-width: 172px;max-width: 196px;" class="button button--antiman button--text-thick button--text-upper button--size-s button--inverted-alt button--round-s button--border-thick"> 		
-               <span id="clockdiv"></span> 
-               </button>	
+               <button ng-show='quiz.timer'  style="min-width: 172px;max-width: 196px;" class="button button--antiman button--text-thick button--text-upper button--size-s button--inverted-alt button--round-s button--border-thick">
+               <span id="clockdiv"></span>
+               </button>
                <script>
                   localStorage.setItem("ale",true);
-                  
-                  
-                  
+
+
+
                </script>
                <div class='closer allMark'  id='listOfMark'>
                   <div class="close"></div>
@@ -157,6 +157,9 @@ if(alreadyDone==true || alreadyDone=='true')
                   <div class="row">
                      <div class="col-sm-16" >
                         <h4 >{{quiz.activeQuestion+1 + ". " + quiz.dataService.quizQuestions[quiz.activeQuestion].text}}</h4>
+
+                        <img class="questImg" id="photoQ{{quiz.dataService.quizQuestions[quiz.activeQuestion].question_id_true}}" ng-src="{{quiz.dataService.quizQuestions[quiz.activeQuestion].questionImgUrl}}" style="display:block" alt="">
+                    
                         <div class="question-answer" ng-class="{'image-selected': $index === quiz.dataService.quizQuestions[quiz.activeQuestion].selected}" ng-click="quiz.selectAnswer($index)"> </div>
                         <div class="row" ng-if="quiz.dataService.quizQuestions[quiz.activeQuestion].type === 'text'">
                            <div class="col-sm-12 noLeft hoverBlue" ng-repeat="answer in quiz.dataService.quizQuestions[quiz.activeQuestion].possibilities">
@@ -170,10 +173,10 @@ if(alreadyDone==true || alreadyDone=='true')
                         </div>
                      </div>
                   </div>
-                  <button class="btn btn-warning blumental" ng-click="quiz.questionAnswered3();quiz.prevtest()" id="showPrev" style='display:none'>Précédent</button>  
-                  <button class="btn btn-warning blumental" ng-click="quiz.questionAnswered();quiz.questionAnswered2()" ng-show="quiz.submit" onclick="fadeOutInfeedBack();kipsta()fadeOutInQuest();fakeIr()">Suivant</button>   
-                  </br>				  
-                  </br>	
+                  <button class="btn btn-warning blumental" ng-click="quiz.questionAnswered3();quiz.prevtest()" id="showPrev" style='display:none'>Précédent</button>
+                  <button class="btn btn-warning blumental" ng-click="quiz.questionAnswered();quiz.questionAnswered2()" ng-show="quiz.submit" onclick="fadeOutInfeedBack();kipsta()fadeOutInQuest();fakeIr()">Suivant</button>
+                  </br>
+                  </br>
                   <center>
                      <div class=" col-sm-3 btn btn-warning blumental" style="background-color:#3f51b5;float: none;" >
                         Marquer la question
@@ -200,22 +203,22 @@ if(alreadyDone==true || alreadyDone=='true')
                markActive='mark'+activeWear
                if(markingMe == true){
                marking[activeWear]=true;
-               
+
                localStorage.setItem(markActive,true)
                }
                if(markingMe == false){
                marking[activeWear]=false;
-               
+
                localStorage.setItem(markActive,false)
                }
                }
-               			
-            </script>	
+
+            </script>
             <div class="well well-sm" ng-show="quiz.finalise">
                <div class="row">
                   <div class="col-xs-12">
                      <h3 style="color:black">Voulez vous soumettre vos réponses?</h3>
-                     <button class="btn btn-success" ng-click="dopamine();quiz.finaliseAnswers();">Oui</button> <button class="btn btn-danger" ng-click="quiz.finalise = false">Non</button> 
+                     <button class="btn btn-success" ng-click="dopamine();quiz.finaliseAnswers();">Oui</button> <button class="btn btn-danger" ng-click="quiz.finalise = false">Non</button>
                   </div>
                </div>
             </div>
@@ -227,11 +230,11 @@ if(alreadyDone==true || alreadyDone=='true')
                <div class="col-xs-12">
                   <h2 class="white">Resultats:
                   </h2>
-                  <div class="btn-toolbar"> 
+                  <div class="btn-toolbar">
                      <button class="btn" ng-repeat="question in results.dataService.quizQuestions" ng-class="{'btn-success': question.correct, 'btn-danger': !question.correct}" ng-click="results.setActiveQuestion($index)">  {{$index + 1}}
                      <span class="glyphicon" ng-class="{'glyphicon-ok': question.correct, 'glyphicon-remove': !question.correct}">
-                     </span> 
-                     </button> 
+                     </span>
+                     </button>
                   </div>
                </div>
                <div class="col-xs-4" ng-show="listend">
@@ -239,17 +242,17 @@ if(alreadyDone==true || alreadyDone=='true')
                      <h4 >Légende:
                      </h4>
                      <div class="col-sm-4">
-                        <button class="btn btn-success"> 
-                        <span class="glyphicon glyphicon-ok"></span> 
-                        </button> 
+                        <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        </button>
                         <p>Correcte
                         </p>
                      </div>
                      <div class="col-sm-4">
-                        <button class="btn btn-danger"> 
+                        <button class="btn btn-danger">
                         <span class="glyphicon glyphicon-remove">
-                        </span> 
-                        </button> 
+                        </span>
+                        </button>
                         <p>Incorrecte</p>
                      </div>
                   </div>
@@ -270,7 +273,7 @@ if(alreadyDone==true || alreadyDone=='true')
                         <div class="row" ng-if="results.dataService.quizQuestions[results.activeQuestion].type === 'text'">
                            <div class="col-sm-6 outrage" ng-repeat="answer in results.dataService.quizQuestions[results.activeQuestion].possibilities">
                               <h4 class="answer" ng-class="results.getAnswerClass($index)">
-                                 {{answer.answer}}  
+                                 {{answer.answer}}
                                  <p class="pull-right" ng-show="$index+1!== results.quizMetrics.correctAnswers[results.activeQuestion] && $index === results.dataService.quizQuestions[results.activeQuestion].selected"></p>
                                  <p class="pull-right" ng-show="$index+1=== results.quizMetrics.correctAnswers[results.activeQuestion]"></p>
                               </h4>
@@ -289,22 +292,22 @@ if(alreadyDone==true || alreadyDone=='true')
                </div>
             </div>
             <button class="btn btn-primary btn-lg" ng-click="results.reset()">Retourner au menu
-            </button> 
+            </button>
          </div>
       </div>
       </div>
-      </div> 
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script> 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-audio/1.7.4/angular.audio.js"></script> <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script> 
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> <script src="js/app.js"></script> 
-	     <script src="js/factories/dataservice.js"></script> 
-     
-      <script src="js/controllers/quiz.js"></script> 
-      <script src="js/controllers/results.js"></script> 
-      <script src="js/controllers/animation.js"></script> 
-      <script src="js/factories/quizMetrics.js"></script> 
-	  
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-audio/1.7.4/angular.audio.js"></script> <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> <script src="js/app.js"></script>
+	     <script src="js/factories/dataservice.js"></script>
+
+      <script src="js/controllers/quiz.js"></script>
+      <script src="js/controllers/results.js"></script>
+      <script src="js/controllers/animation.js"></script>
+      <script src="js/factories/quizMetrics.js"></script>
+
 	   <script src="js/controllers/list.js"></script>
-   
+
    </body>
 </html>

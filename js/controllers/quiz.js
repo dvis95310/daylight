@@ -1,9 +1,9 @@
 var stopPop = false;
 var time = 99999;
-var listElemA 
+var listElemA
 var listElemB
 var showListElMark
-var showListElAns 
+var showListElAns
   var userAns = [];
 
 (function() {
@@ -58,6 +58,7 @@ var showListElAns
         vm.listMyMarked = listMyMarked;
         vm.listMyAnswered = listMyAnswered;
         vm.listMyAll = listMyAll;
+          vm.quesImgShow = false;
 
         listElemA = jQuery('.listMyRideA')
         listElemB = jQuery('.listMyRideB')
@@ -90,7 +91,7 @@ var showListElAns
                     listElemA = jQuery('.listMyRideB');
                     $(listElemA[i]).css('font-size', ' 0px')
                 }
-				
+
 				     if (localStorage.getItem('questAns' + i) == false || localStorage.getItem('questAns' + i) == 'false' || localStorage.getItem('questAns' + i) == 'null'|| localStorage.getItem('questAns' + i) == null|| localStorage.getItem('questAns' + i) == 'undefined' || localStorage.getItem('questAns' + i) == undefined)
 
                 {
@@ -180,6 +181,7 @@ var showListElAns
         }
 
         function setActiveQuestion(index) {
+
             activeWear;
             if (activeWear == 0) {
                 $('#showPrev').hide()
@@ -311,7 +313,7 @@ var showListElAns
         };
 
         function questionAnswered2() {
-
+          
             if (vm.finalise == false) {
 
                 vm.feedBack = false;
@@ -413,10 +415,10 @@ var showListElAns
 
 
         function selectAnswer(index) {
-          
+
             if (DataService.quizQuestions[vm.activeQuestion].selected == index) {
 				localStorage.setItem('questAns' + activeWear, false);
-			
+
                 DataService.quizQuestions[vm.activeQuestion].selected = null;
                 index = null;
 				userAns[activeWear]=null;
@@ -425,7 +427,7 @@ var showListElAns
             DataService.quizQuestions[vm.activeQuestion].selected = index;
 			userAns[activeWear]=index+1;
 
-  
+
             var testStock = DataService.quizQuestions[vm.activeQuestion].selected;
 
             localStorage.setItem('questAns' + activeWear, true)

@@ -3,6 +3,7 @@
      "question_id":1,
       "question_prequel":"Votre entreprise fabrique du mobilier de cuisine et va lancer sur le marché un nouveau produit innovant, bien qu'employant les méthodes de fabrication existantes. Laquelle des affirmations suivantes est vraie ? ",
       "feedback":"Le lancement de cette gamme doit se gérer comme un projet, par la suite il s'agira d'opérations récurrentes, comme pour les autres gammes de produit",
+      "questionImgContain":true,
       "possibilities":[
          "Ce n'est ni un projet ni une opération en cours, mais deviendra une opération en cours après sa mise en œuvre. ",
          "Le lancement de cette nouvelle gamme de produits répond à la définition d'un projet.",
@@ -120,7 +121,7 @@
          "Rencontrer les parties prenantes dans des séries descendantes d'entretiens"
       ]
    },
-   
+
       {
         "question_id":12,
          "question_prequel":"Pour s'assurer que le projet contient effectivement le travail que vous devez accomplir, vous devez examiner cinq processus clés. Parmi les processus suivants, lequel n'en fait pas partie ? ",

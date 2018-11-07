@@ -1,7 +1,7 @@
 ﻿{ "quiz_title":"Quiz Pré-présentiel du chapitre",
      "quiz_title2":"1-Introduction",
      "quiz_id":1,
-     "quiz_n_questions":20,
+     "quiz_n_questions":33,
      "quiz_n_questionsMax":33,
      "answers_file_name":"answersdemo13",
      "question_file_name":"questiondemo13",
@@ -12,4 +12,3 @@
          "Bon quiz !"
       ]
    }
- 

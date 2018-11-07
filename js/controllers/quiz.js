@@ -4,7 +4,10 @@ var listElemA
 var listElemB
 var showListElMark
 var showListElAns 
+		var bindMyNestVar
   var userAns = [];
+   var localStorageJs = Object.keys(localStorage);
+   					  var rodes
 
 (function() {
 
@@ -52,9 +55,11 @@ var showListElAns
         vm.quesTime = 60;
         var numQuestionsAnswered = 0;
         var rootMyQuest = 0;
+        var rootMyQuestCompt = 0;
         var listMyMarked = false
         var listMyAnswered = false
         var listMyAll = false
+
         vm.listMyMarked = listMyMarked;
         vm.listMyAnswered = listMyAnswered;
         vm.listMyAll = listMyAll;
@@ -62,7 +67,7 @@ var showListElAns
         listElemA = jQuery('.listMyRideA')
         listElemB = jQuery('.listMyRideB')
 
-        var numberQUestion = 999;
+        var numberQUestion = 9999;
 
 
         showListElMark = function() {
@@ -301,19 +306,34 @@ var showListElAns
         }
 
         function questionAnswered() {
+						localStorageJs = Object.keys(localStorage)
+				var ArrayCount=[]
+				
+			      for (var r = 0; r < TotalBindQuest; r++) {
+
+					  if (localStorage.getItem('questAns' + r == true) || localStorage.getItem('questAns' + r) == 'true'){ArrayCount.push(r);jQuery("#bindMyNest").text(ArrayCount.length)}
+                   
+                }
+	
+			bindMyNestVar = parseInt(localStorage.getItem("rootMyQuestCompt"))
+			if (isNaN(bindMyNestVar)){bindMyNestVar=0}
+			 jQuery("#bindMyNestTot").text(TotalBindQuest);
+			
+			
             if (DataService.quizQuestions[vm.activeQuestion].selected == null) {
                 DataService.quizQuestions[vm.activeQuestion].selected = 999;
             }
             rootMyQuest = rootMyQuest + 1;
+			localStorage.setItem("rootMyQuest",rootMyQuest)
 
             vm.submit = false;
 
         };
 
         function questionAnswered2() {
+	
 
             if (vm.finalise == false) {
-
                 vm.feedBack = false;
                 vm.feedBackQuest = true;
                 vm.submit = true;
@@ -416,6 +436,9 @@ var showListElAns
           
             if (DataService.quizQuestions[vm.activeQuestion].selected == index) {
 				localStorage.setItem('questAns' + activeWear, false);
+				rootMyQuestCompt = rootMyQuestCompt -1;
+				localStorage.setItem("rootMyQuestCompt",rootMyQuestCompt);
+			
 			
                 DataService.quizQuestions[vm.activeQuestion].selected = null;
                 index = null;
@@ -427,9 +450,13 @@ var showListElAns
 
   
             var testStock = DataService.quizQuestions[vm.activeQuestion].selected;
-
+			rootMyQuestCompt = rootMyQuestCompt +1;
+			localStorage.setItem("rootMyQuestCompt",rootMyQuestCompt);
             localStorage.setItem('questAns' + activeWear, true)
 			}
+			
+			
+			
         }
 
         function selectNoAnswer(index) {

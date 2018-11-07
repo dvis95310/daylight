@@ -30,6 +30,21 @@ cursor: pointer;
   
 }
 
+
+
+   @media screen and (min-width: 200px) and (max-width: 950px) {
+    .closer {
+    display: none;
+    position: absolute;
+    color: white;
+    z-index: 999999;
+    width: 79%;
+    text-align: left;
+    padding: 1%;
+    cursor: pointer;
+}
+      }
+
 .allMark{background-color: slategrey;overflow-y: scroll;max-height: initial;}
 
 
